@@ -1,0 +1,28 @@
+FROM debian
+
+ARG JAVA_OPTS 
+ARG CLASSPATH
+
+RUN apt-get update \
+	; apt-get install -y ca-certificates git curl gnupg2 software-properties-common wget make unzip vim net-tools
+
+RUN curl -O https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz \
+	; tar xvzf openjdk-11.0.2_linux-x64_bin.tar.gz \
+	; rm -f openjdk-11.0.2_linux-x64_bin.tar.gz
+
+RUN curl -O https://apachemirror.sg.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
+	; tar xvzf apache-maven-3.6.3-bin.tar.gz \
+	; rm apache-maven-3.6.3-bin.tar.gz
+
+RUN curl -O https://repo1.maven.org/maven2/org/slf4j/slf4j-simple/2.0.0-alpha1/slf4j-simple-2.0.0-alpha1.jar
+
+ENV CLASSPATH="$CLASSPATH:/slf4j-simple-2.0.0-alpha1.jar"
+ENV JAVA_HOME=/jdk-11.0.2
+ENV JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8"
+ENV PATH="$PATH:/usr/local/go/bin:/jdk-11.0.2/bin:/apache-maven-3.6.3/bin"
+
+WORKDIR /app-src
+
+# ENTRYPOINT "./bin/standalone.sh"
+
+CMD ["bash"]
