@@ -22,9 +22,13 @@ RUN apt update \
 RUN curl -O https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz \
 	; tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz ; rm -f go1.14.4.linux-amd64.tar.gz
 
-RUN curl -O https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_linux-x64_bin.tar.gz \
-	; tar xvzf openjdk-14.0.2_linux-x64_bin.tar.gz \
-	; rm openjdk-14.0.2_linux-x64_bin.tar.gz
+#RUN curl -O https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_linux-x64_bin.tar.gz \
+#	; tar xvzf openjdk-14.0.2_linux-x64_bin.tar.gz \
+#	; rm openjdk-14.0.2_linux-x64_bin.tar.gz
+
+RUN curl -O https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz \
+	; tar xvzf openjdk-11.0.2_linux-x64_bin.tar.gz \
+	; rm -f openjdk-11.0.2_linux-x64_bin.tar.gz
 
 RUN curl -O https://downloads.jboss.org/keycloak/11.0.2/keycloak-11.0.2.zip \
 	; unzip keycloak-11.0.2.zip ; rm keycloak-11.0.2.zip
